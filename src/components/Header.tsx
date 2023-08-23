@@ -1,7 +1,7 @@
 import React from "react";
 import { cartItem } from "./Products"; // Import the correct type from Products
 
-interface HeaderProps {
+export interface HeaderProps {
   setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
   cartData: cartItem[]; // Add a prop for cart data
 }
