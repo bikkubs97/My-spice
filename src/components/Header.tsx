@@ -12,7 +12,6 @@ export default function Header({ setShowCart, cartData }: HeaderProps) {
     (total, cartItem) => total + cartItem.count,
     0
   );
-
   return (
     <div>
       <div className="flex justify-between">
@@ -28,8 +27,8 @@ export default function Header({ setShowCart, cartData }: HeaderProps) {
           </h2>
           <div
             onClick={() => setShowCart(true)}
-            className="m-4 p-6 text-xl text-white hover:text-yellow-300 hover:cursor-pointer bg-[url('cart.png')] hidden bg-cover w-50 md:w-20 md:block hover:animate-bounce "
-          ></div>
+            className="m-4 p-6 text-xl text-orange-600  hover:text-black hover:cursor-pointer bg-[url('cart.png')] hidden bg-cover w-50 md:w-20 md:block hover:animate-bounce "
+          >Cart</div>
           <div
             onClick={() => setShowCart(true)}
             className="md:hidden mt-10 text-white"

@@ -48,19 +48,19 @@ function Cart({
                     {cartItem.item.name} - {cartItem.count} No
                     <div className="">
                       <button
-                        className="bg-orange-600 m-1 w-8 hover:bg-green-600"
+                        className="bg-orange-600 m-1 w-8 hover:bg-green-600 rounded-md"
                         onClick={() => handleIncr(cartItem.item)}
                       >
                         +
                       </button>
                       <button
-                        className="bg-orange-600 m-1 w-8 hover:bg-green-600"
+                        className="bg-orange-600 m-1 w-8 hover:bg-green-600 rounded-md"
                         onClick={() => handleDecr(cartItem.item.id)}
                       >
                         -
                       </button>
                       <button
-                        className="bg-orange-600 m-1 w-8 hover:bg-red-600"
+                        className="bg-orange-600 m-1 w-8 hover:bg-red-600 rounded-md"
                         onClick={() => handleRemove(cartItem.item.id)}
                       >
                         X
@@ -92,7 +92,7 @@ function Cart({
 
           {checkoutClicked && (
             <div className="text-black">
-              <h1>Enter Shipping Details</h1>
+              <h1 className="font-bold text-orange-600">Enter Shipping Details</h1>
               <form>
                 <label>Name</label>
                 <input type="text" />
