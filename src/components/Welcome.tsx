@@ -1,6 +1,6 @@
-import React from 'react'
 
-export default function Welcome() {
+
+export default function Welcome():JSX.Element {
   return (
     <div>Welcome</div>
   )
