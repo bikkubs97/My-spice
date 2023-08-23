@@ -27,7 +27,7 @@ export default function Header({ setShowCart, cartData }: HeaderProps) {
           </h2>
           <div
             onClick={() => setShowCart(true)}
-            className="m-4 p-6 text-xl text-orange-600  hover:text-black hover:cursor-pointer bg-[url('cart.png')] hidden bg-cover w-50 md:w-20 md:block hover:animate-bounce "
+            className="m-4 p-6 text-xl text-orange-600  hover:text-black hover:cursor-pointer bg-[url('trolley.png')] hidden bg-cover w-50 md:w-20 md:block hover:animate-bounce "
           >Cart</div>
           <div
             onClick={() => setShowCart(true)}
