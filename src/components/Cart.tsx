@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { cartItem, item } from "./Products";
 
 interface CartProps {
@@ -41,7 +41,7 @@ function Cart({
         </button>
         <div className="md:flex">
           <div className="h-2/3 md:w-1/2 md:m-5 text-black">
-            <ul >
+            <ul>
               {cartData.length > 0 ? (
                 cartData.map((cartItem) => (
                   <li key={cartItem.item.id}>
@@ -70,7 +70,8 @@ function Cart({
                 ))
               ) : (
                 <p className="text-black">
-                  You have nothing in your bucket, Please add products to the bucket
+                  You have nothing in your bucket, Please add products to the
+                  bucket
                 </p>
               )}
             </ul>
@@ -94,9 +95,11 @@ function Cart({
               <h1>Enter Shipping Details</h1>
               <form>
                 <label>Name</label>
-                <input type="text" /><br />
+                <input type="text" />
+                <br />
                 <label>Address</label>
-                <input type="text" /><br />
+                <input type="text" />
+                <br />
                 <label>Phone</label>
                 <input type="tel" pattern="[0-9]{10}" />
                 <button className="bg-orange-600 p-2 border rounded-md hover:bg-yellow-500 hover:text-black">
