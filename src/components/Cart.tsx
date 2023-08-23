@@ -1,5 +1,5 @@
-import React from "react";
-import { cartItem , item} from "./Products";
+import React, { useState } from "react";
+import { cartItem, item } from "./Products";
 
 interface CartProps {
   cartData: cartItem[];
@@ -9,9 +9,15 @@ interface CartProps {
   handleRemove: (itemId: number) => void;
 }
 
-
-function Cart({ cartData, setShowCart, handleIncr, handleDecr, handleRemove }: CartProps): JSX.Element {
+function Cart({
+  cartData,
+  setShowCart,
+  handleIncr,
+  handleDecr,
+  handleRemove,
+}: CartProps): JSX.Element {
   // Calculate the subtotal for each item
+  const [checkoutClicked, setCheckoutClicked] = useState(false);
   const subtotals = cartData.map((cartItem) => {
     return cartItem.item.price * cartItem.count;
   });
@@ -33,32 +39,73 @@ function Cart({ cartData, setShowCart, handleIncr, handleDecr, handleRemove }: C
         >
           X
         </button>
-        <div className="h-3/4 m-5 text-black">
-          <ul>
-            {cartData.length > 0 ? (
-              cartData.map((cartItem) => (
-                <li key={cartItem.item.id}>
-                  {cartItem.item.name} - {cartItem.count} No
-                  <div className="">
-                    <button className="bg-orange-600 m-1 w-8 hover:bg-green-600" onClick={() => handleIncr(cartItem.item)}>+</button>
-                    <button className="bg-orange-600 m-1 w-8 hover:bg-green-600" onClick={() => handleDecr(cartItem.item.id)}>-</button>
-                    <button className="bg-orange-600 m-1 w-8 hover:bg-red-600" onClick={() => handleRemove(cartItem.item.id)}>X</button>
-                  </div>
-                </li>
-              ))
-            ) : (
-              <p className="text-black">You have nothing in your bucket, Please add products to the bucket</p>
+        <div className="md:flex">
+          <div className="h-2/3 md:w-1/2 md:m-5 text-black">
+            <ul >
+              {cartData.length > 0 ? (
+                cartData.map((cartItem) => (
+                  <li key={cartItem.item.id}>
+                    {cartItem.item.name} - {cartItem.count} No
+                    <div className="">
+                      <button
+                        className="bg-orange-600 m-1 w-8 hover:bg-green-600"
+                        onClick={() => handleIncr(cartItem.item)}
+                      >
+                        +
+                      </button>
+                      <button
+                        className="bg-orange-600 m-1 w-8 hover:bg-green-600"
+                        onClick={() => handleDecr(cartItem.item.id)}
+                      >
+                        -
+                      </button>
+                      <button
+                        className="bg-orange-600 m-1 w-8 hover:bg-red-600"
+                        onClick={() => handleRemove(cartItem.item.id)}
+                      >
+                        X
+                      </button>
+                    </div>
+                  </li>
+                ))
+              ) : (
+                <p className="text-black">
+                  You have nothing in your bucket, Please add products to the bucket
+                </p>
+              )}
+            </ul>
+            {cartData.length > 0 && (
+              <div className="md:absolute bottom-2">
+                <span className="m-5 text-green-500 font-bold">
+                  Total = Rs.{total.toFixed(2)}
+                </span>
+                <button
+                  onClick={() => setCheckoutClicked(true)}
+                  className="bg-orange-600 p-2 border rounded-md hover:bg-yellow-500 hover:text-black"
+                >
+                  Proceed to Checkout!
+                </button>
+              </div>
             )}
-          </ul>
+          </div>
+
+          {checkoutClicked && (
+            <div className="text-black">
+              <h1>Enter Shipping Details</h1>
+              <form>
+                <label>Name</label>
+                <input type="text" /><br />
+                <label>Address</label>
+                <input type="text" /><br />
+                <label>Phone</label>
+                <input type="tel" pattern="[0-9]{10}" />
+                <button className="bg-orange-600 p-2 border rounded-md hover:bg-yellow-500 hover:text-black">
+                  Proceed to Pay!
+                </button>
+              </form>
+            </div>
+          )}
         </div>
-        <span className="m-5 text-green-500 font-bold">
-          Total = Rs.{total.toFixed(2)}
-        </span>
-        {cartData.length > 0 ? (
-          <button className="bg-orange-600 p-2 border rounded-md hover:bg-yellow-500 hover:text-black">
-            Proceed to Checkout!
-          </button>
-        ) : null}
       </div>
     </>
   );
