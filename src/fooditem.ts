@@ -14,7 +14,7 @@ export const foodItems: item[] = [
       price: 100,
       imgUrl: "fires.png",
       rating: 4.8,
-      category: "chicken",
+      category: "others",
     },
     {
       id: 3,
