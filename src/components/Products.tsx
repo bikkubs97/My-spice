@@ -1,90 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { foodItems, item } from "../fooditem";
+
 import Cart from "./Cart";
 import Header from "./Header";
-
-export interface item {
-  id: number;
-  name: string;
-  price: number;
-  imgUrl: string;
-  rating: number;
-  category: string;
-}
-
 export interface cartItem {
   item: item;
   count: number;
 }
+interface userData{
+  name:string;
+  data:cartItem[]
+}
+
 export default function Products() {
-  const foodItems: item[] = [
-    {
-      id: 1,
-      name: "Pizza",
-      price: 120,
-      imgUrl: "pizza.png",
-      rating: 4.7,
-      category: "others",
-    },
-
-    {
-      id: 2,
-      name: "Fries",
-      price: 100,
-      imgUrl: "fires.png",
-      rating: 4.8,
-      category: "chicken",
-    },
-    {
-      id: 3,
-      name: "Chicken Nuggets",
-      price: 150,
-      imgUrl: "nuggets.png",
-      rating: 3.9,
-      category: "chicken",
-    },
-    {
-      id: 4,
-      name: "Burger",
-      price: 80,
-      imgUrl: "burger.png",
-      rating: 4.2,
-      category: "others",
-    },
-    {
-      id: 5,
-      name: "Fried Chicken",
-      price: 300,
-      imgUrl: "chicken.png",
-      rating: 4.5,
-      category: "chicken",
-    },
-    {
-      id: 6,
-      name: "Coco Cola",
-      price: 70,
-      imgUrl: "coco.png",
-      rating: 4.7,
-      category: "drinks",
-    },
-    {
-      id: 7,
-      name: "Shawarma",
-      price: 100,
-      imgUrl: "swarma.png",
-      rating: 4.7,
-      category: "others",
-    },
-    {
-      id: 8,
-      name: "Pepsi",
-      price: 60,
-      imgUrl: "pepsi.png",
-      rating: 4.7,
-      category: "drinks",
-    },
-  ];
-
-  const [cart, setCart] = useState<cartItem[]>([]);
+  const [userData, setUserData] = useState<userData>(() => {
+    const userDataString = localStorage.getItem("userData");
+    if (userDataString) {
+      const parsedUserData = JSON.parse(userDataString);
+      return parsedUserData;
+    }
+    return [];
+  });
+  const [cart, setCart] = useState(userData.data);
   const [showCart, setShowCart] = useState(false);
   const [selectedPriceRange, setSelectedPriceRange] =
     useState<string>("All Range");
@@ -105,6 +42,28 @@ export default function Products() {
     }
   }
 
+  useEffect(() => {
+    // Check if user data is available in local storage
+    const userDataString = localStorage.getItem("userData");
+    if (userDataString) {
+      // Parse the user data from local storage
+      const parsedUserData = JSON.parse(userDataString);
+      // Set userData, which includes cart data
+      setUserData(parsedUserData);
+      console.log(parsedUserData);
+    } else {
+      console.error("No data found!");
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "userData",
+      JSON.stringify({ ...userData, data: cart })
+    );
+    console.log(localStorage.getItem("userData"));
+  }, [cart, userData]);
+
   function decrementCartItem(itemId: number) {
     const updatedCart = cart
       .map((cartItem) => {
@@ -115,11 +74,16 @@ export default function Products() {
       })
       .filter((cartItem) => cartItem.count > 0);
     setCart(updatedCart);
+    localStorage.setItem(
+      "userData",
+      JSON.stringify({ ...userData, data: updatedCart })
+    );
   }
 
   function removeCartItem(itemId: number) {
     const updatedCart = cart.filter((cartItem) => cartItem.item.id !== itemId);
     setCart(updatedCart);
+    localStorage.setItem("userData", JSON.stringify(updatedCart));
   }
 
   function filterItems(item: item): boolean {
@@ -162,9 +126,9 @@ export default function Products() {
 
   return (
     <>
-      <Header cartData={cart} setShowCart={setShowCart} />
-      <div className="flex ml-5">
-        <label className="ml-4 p-2 text-black">Price</label>
+      <Header cartData={cart} setShowCart={setShowCart} user={userData.name} />
+      <div className="flex md:ml-5 w-[90%]">
+        <label className="md:ml-4 p-2 text-black">Price</label>
         <select
           className="bg-yellow-400"
           name="Price"
@@ -176,7 +140,7 @@ export default function Products() {
           <option value="100-200">100-200</option>
           <option value="200-300">200-300</option>
         </select>
-        <label className="ml-4 p-2 text-black">Rating</label>
+        <label className="md:ml-4 p-2 text-black">Rating</label>
         <select
           className="bg-yellow-400"
           name="Rating"
@@ -188,7 +152,7 @@ export default function Products() {
           <option value="3-4">3-4</option>
           <option value="1-3">1-3</option>
         </select>
-        <label className="ml-4 p-2 text-black">Category</label>
+        <label className="md:ml-4 p-2 text-black">Category</label>
         <select
           className="bg-yellow-400"
           name="Category"
@@ -201,7 +165,7 @@ export default function Products() {
           <option value="others">Others</option>
         </select>
       </div>
-      <div className="md:mx-20 flex-wrap md:flex text-2xl ml-5 text-white">
+      <div className="md:mx-20 flex-wrap md:flex text-2xl ml-5 text-black">
         {filteredItems.map((item) => (
           <div className="m-2 mx-4 my-10 p-1 " key={item.id}>
             <div>{item.name}</div>

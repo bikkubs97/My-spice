@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { cartItem, item } from "./Products";
+import { cartItem, } from "./Products";
+import { item } from "../fooditem";
 
 interface CartProps {
   cartData: cartItem[];
@@ -21,13 +22,13 @@ function Cart({
   const subtotals = cartData.map((cartItem) => {
     return cartItem.item.price * cartItem.count;
   });
-
+  
   // Calculate the total by summing up the subtotals
   const total = subtotals.reduce((acc, subtotal) => acc + subtotal, 0);
 
   return (
     <>
-      <div className="fixed top-12 mx-20 mt-10 p-4 md:h-[80%] md:w-[80%] bg-white border-4 border-black rounded-md ">
+      <div className="fixed top-12 w-[90%] md:mx-20 mt-10 m:mb-4 p-4  md:w-[80%]   bg-white border-4 border-black rounded-md">
         <span className="text-4xl font-bold text-center text-black">
           Your Bucket
         </span>
@@ -44,9 +45,8 @@ function Cart({
             <ul>
               {cartData.length > 0 ? (
                 cartData.map((cartItem) => (
-                  <li key={cartItem.item.id}>
-                    {cartItem.item.name} - {cartItem.count} No
-                    <div className="">
+                  <li key={cartItem.item.id} className="flex items-center">
+                    <div>
                       <button
                         className="bg-orange-600 m-1 w-8 hover:bg-green-600 rounded-md"
                         onClick={() => handleIncr(cartItem.item)}
@@ -66,6 +66,9 @@ function Cart({
                         X
                       </button>
                     </div>
+                    <div>
+                      {cartItem.item.name} - {cartItem.count} No
+                    </div>
                   </li>
                 ))
               ) : (
@@ -76,13 +79,14 @@ function Cart({
               )}
             </ul>
             {cartData.length > 0 && (
-              <div className="md:absolute bottom-2">
-                <span className="m-5 text-green-500 font-bold">
+              <div className="md:relative top-2">
+                <div className="m-5 text-green-500 font-bold">
                   Total = Rs.{total.toFixed(2)}
-                </span>
+                </div>
+               
                 <button
                   onClick={() => setCheckoutClicked(true)}
-                  className="bg-orange-600 p-2 border rounded-md hover:bg-yellow-500 hover:text-black"
+                  className="bg-yellow-400 p-2 border rounded-md hover:bg-green-500 hover:text-black"
                 >
                   Proceed to Checkout!
                 </button>
@@ -90,19 +94,29 @@ function Cart({
             )}
           </div>
 
-          {checkoutClicked && (
+          {checkoutClicked && cartData.length > 0 && (
             <div className="text-black">
-              <h1 className="font-bold text-orange-600">Enter Shipping Details</h1>
-              <form>
-                <label>Name</label>
-                <input type="text" />
+              <h1 className="font-bold text-orange-600 mt-5">
+                Enter Shipping Details
+              </h1>
+              <form className="group">
+                <label className="p-1 m-1">Name</label>
                 <br />
-                <label>Address</label>
-                <input type="text" />
+                <input className="p-1 m-1 border rounded-md" type="text" />
                 <br />
-                <label>Phone</label>
-                <input type="tel" pattern="[0-9]{10}" />
-                <button className="bg-orange-600 p-2 border rounded-md hover:bg-yellow-500 hover:text-black">
+                <label className="p-1 m-1">Address</label>
+                <br />
+                <input className="p-1 m-1 border rounded-md" type="text" />
+                <br />
+                <label className="p-1 m-1">Phone</label>
+                <br />
+                <input
+                  className="p-1 m-1 border rounded-md"
+                  type="tel"
+                  pattern="[0-9]{10}"
+                />
+                <br />
+                <button  className="bg-yellow-400 p-2 border rounded-md hover:bg-green-500 hover:text-black">
                   Proceed to Pay!
                 </button>
               </form>
