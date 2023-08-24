@@ -62,11 +62,11 @@ export default function Header({ setShowCart, cartData, user }: HeaderProps) {
 
   return (
     <div>
-      <div className="flex justify-between w-full">
-        <h1 className="text-orange-600 font-extrabold text-6xl m-2 p-2">
+      <div className="flex justify-between w-full mt-5">
+        <h1 className="text-orange-600 font-extrabold text-6xl mx-2">
           My Spice!
         </h1>
-        <div className="flex">
+        <div className="flex md:mt-0">
           <h2 className="m-1 md:m-4 md:p-6 text-xl text-orange-600 hover:text-black hover:cursor-pointer font-bold animate-pulse">
             Welcome {user ? user : ""}
           </h2>
@@ -78,19 +78,14 @@ export default function Header({ setShowCart, cartData, user }: HeaderProps) {
           </h2>
           <div
             onClick={() => setShowCart(true)}
-            className="md:m-4 md:p-6 text-xl text-orange-600  hover:text-black hover:cursor-pointer bg-[url('trolley.png')] hidden bg-cover w-50 md:w-20 md:block md:hover:animate-bounce "
+            className="md:m-4 ml-2 md:p-6 text-xl text-orange-600 mt-1 hover:text-black hover:cursor-pointer  md:hover:animate-bounce "
           >
             Cart
           </div>
+        
           <div
             onClick={() => setShowCart(true)}
-            className="md:hidden mt-10 text-black"
-          >
-            Cart
-          </div>
-          <div
-            onClick={() => setShowCart(true)}
-            className="bg-red-500 w-10 text-center h-8 mt-5 mr-5 rounded-md p-2 text-white font-bold hover:cursor-pointer"
+            className="bg-red-500 w-10 md:relative text-center h-8  mr-5 rounded-md p-2 text-white font-bold hover:cursor-pointer"
           >
             {cartItemCount}
           </div>

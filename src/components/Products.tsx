@@ -127,22 +127,23 @@ export default function Products() {
   return (
     <>
       <Header cartData={cart} setShowCart={setShowCart} user={userData.name} />
-      <div className="flex md:ml-5 w-[90%]">
+      <div className="md:flex  md:ml-5 w-[60%]">
         <label className="md:ml-4 p-2 text-black">Price</label>
         <select
-          className="bg-yellow-400"
+          className="bg-yellow-400 mt-2 "
           name="Price"
           onChange={(e) => setSelectedPriceRange(e.target.value)}
           value={selectedPriceRange}
+        
         >
           <option value="All Range">All Range</option>
           <option value="50-100">50-100</option>
           <option value="100-200">100-200</option>
           <option value="200-300">200-300</option>
-        </select>
+        </select> <br/>
         <label className="md:ml-4 p-2 text-black">Rating</label>
         <select
-          className="bg-yellow-400"
+          className="bg-yellow-400 mt-2"
           name="Rating"
           onChange={(e) => setSelectedRatingRange(e.target.value)}
           value={selectedRatingRange}
@@ -151,10 +152,10 @@ export default function Products() {
           <option value="4-5">4-5</option>
           <option value="3-4">3-4</option>
           <option value="1-3">1-3</option>
-        </select>
+        </select><br/>
         <label className="md:ml-4 p-2 text-black">Category</label>
         <select
-          className="bg-yellow-400"
+          className="bg-yellow-400 mt-2"
           name="Category"
           onChange={(e) => setSelectedCategory(e.target.value)}
           value={selectedCategory}
