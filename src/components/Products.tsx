@@ -57,7 +57,6 @@ export default function Products() {
       "userData",
       JSON.stringify({ ...userData, data: cart })
     );
-    console.log(localStorage.getItem("userData"));
   }, [cart, userData]);
 
   function decrementCartItem(itemId: number) {
