@@ -8,8 +8,6 @@ export interface HeaderProps {
 }
 
 export default function Header({ setShowCart, cartData, user }: HeaderProps) {
-  // Initialize user state
-
   // Calculate the total number of items in the cart
   const cartItemCount = cartData.reduce(
     (total, cartItem) => total + cartItem.count,
@@ -18,10 +16,7 @@ export default function Header({ setShowCart, cartData, user }: HeaderProps) {
   const navigate = useNavigate();
   async function handleSignOut() {
     try {
-      // Execute handleUpdate asynchronously and wait for it to complete
       await handleUpdate();
-
-      // After handleUpdate completes, remove the token and navigate
       localStorage.removeItem("token");
       navigate("/login");
     } catch (error) {
@@ -56,7 +51,7 @@ export default function Header({ setShowCart, cartData, user }: HeaderProps) {
       window.alert("Changes Saved Successfully!");
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
-      throw error; // Rethrow the error so it can be caught by handleSignOut
+      throw error;
     }
   }
 
@@ -82,7 +77,7 @@ export default function Header({ setShowCart, cartData, user }: HeaderProps) {
           >
             Cart
           </div>
-        
+
           <div
             onClick={() => setShowCart(true)}
             className="bg-red-500 w-10 md:relative text-center h-8  mr-5 rounded-md p-2 md:absoulte md:top-9 right-8 text-white font-bold hover:cursor-pointer"

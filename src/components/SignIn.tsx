@@ -37,10 +37,8 @@ export default function SignIn(): JSX.Element {
         const data = await response.json();
         localStorage.setItem("token", data.token);
         setMessage("Login Successful!");
-
-        // Now that you have the token, fetch additional data and save it in local storage
+        //fetch user data
         await fetchAndSaveAdditionalData(data.token);
-
         setTimeout(() => {
           navigate("/products");
         }, 1000);
