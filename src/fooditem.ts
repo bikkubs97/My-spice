@@ -18,7 +18,7 @@ export const foodItems: item[] = [
     },
     {
       id: 3,
-      name: "Chicken Nuggets",
+      name: "Nuggets",
       price: 150,
       imgUrl: "nuggets.png",
       rating: 3.9,
