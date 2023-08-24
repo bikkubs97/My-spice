@@ -1,6 +1,5 @@
-import  { useState, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-
 
 interface RegisterState {
   username: string;
@@ -18,7 +17,7 @@ export default function SignIn(): JSX.Element {
 
   async function handleSignIn(event: FormEvent) {
     event.preventDefault();
-    setMessage('Please Wait...')
+    setMessage("Please Wait...");
     try {
       const response = await fetch(
         "https://foofiesta-server-j46h.onrender.com/users/login",
@@ -53,23 +52,19 @@ export default function SignIn(): JSX.Element {
 
   async function fetchAndSaveAdditionalData(token: string) {
     try {
-      // Replace this with your actual server endpoint
-      const response = await fetch("https://foofiesta-server-j46h.onrender.com/users/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          // Add other headers as needed
-        },
-      });
-
+      // server end point used is from one of my old project, food fiesta
+      const response = await fetch(
+        "https://foofiesta-server-j46h.onrender.com/users/",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (response.ok) {
         const fetchedData = await response.json();
-        
-        // Store the fetched data in local storage or state as needed
         localStorage.setItem("userData", JSON.stringify(fetchedData));
-
-        console.log("Fetched data:", fetchedData);
       } else {
-        // Handle the error case
         console.error("Failed to fetch additional data from the server");
       }
     } catch (error) {
@@ -80,7 +75,6 @@ export default function SignIn(): JSX.Element {
   function setMessage(message: string) {
     setState((prevState) => ({ ...prevState, message }));
   }
-
 
   return (
     <div className="ml-8 md:flex">

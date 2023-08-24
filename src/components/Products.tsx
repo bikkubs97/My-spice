@@ -7,9 +7,9 @@ export interface cartItem {
   item: item;
   count: number;
 }
-interface userData{
-  name:string;
-  data:cartItem[]
+interface userData {
+  name: string;
+  data: cartItem[];
 }
 
 export default function Products() {
@@ -43,14 +43,10 @@ export default function Products() {
   }
 
   useEffect(() => {
-    // Check if user data is available in local storage
     const userDataString = localStorage.getItem("userData");
     if (userDataString) {
-      // Parse the user data from local storage
       const parsedUserData = JSON.parse(userDataString);
-      // Set userData, which includes cart data
       setUserData(parsedUserData);
-      console.log(parsedUserData);
     } else {
       console.error("No data found!");
     }
@@ -134,13 +130,13 @@ export default function Products() {
           name="Price"
           onChange={(e) => setSelectedPriceRange(e.target.value)}
           value={selectedPriceRange}
-        
         >
           <option value="All Range">All Range</option>
           <option value="50-100">50-100</option>
           <option value="100-200">100-200</option>
           <option value="200-300">200-300</option>
-        </select> <br/>
+        </select>{" "}
+        <br />
         <label className="md:ml-4 p-2 text-black">Rating</label>
         <select
           className="bg-yellow-400 mt-2"
@@ -152,7 +148,8 @@ export default function Products() {
           <option value="4-5">4-5</option>
           <option value="3-4">3-4</option>
           <option value="1-3">1-3</option>
-        </select><br/>
+        </select>
+        <br />
         <label className="md:ml-4 p-2 text-black">Category</label>
         <select
           className="bg-yellow-400 mt-2"

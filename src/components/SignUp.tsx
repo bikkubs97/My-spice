@@ -15,7 +15,7 @@ export default function SignUp(): JSX.Element {
       return;
     }
 
-    setMessage("Please Wait..."); // Set "Please Wait" message before making the API call
+    setMessage("Please Wait...");
 
     try {
       const response = await fetch(
@@ -48,14 +48,18 @@ export default function SignUp(): JSX.Element {
 
   return (
     <div className="ml-8 md:flex">
-        <div className="w-1/2">
-       <h1 className="text-orange-600 font-extrabold text-6xl my-10 animate-bounce">
+      <div className="w-1/2">
+        <h1 className="text-orange-600 font-extrabold text-6xl my-10 animate-bounce">
           My Spice!
         </h1>
         <div className="font-xl font-medium animate-pulse">{message}</div>
-        
-        <p className="font-bold text-xl my-4 ">Welcome to my spice! Order the best food online!</p>
-        <h2 className="font-bold text-xl  text-green-600 my-4">Create Your Account</h2>
+
+        <p className="font-bold text-xl my-4 ">
+          Welcome to my spice! Order the best food online!
+        </p>
+        <h2 className="font-bold text-xl  text-green-600 my-4">
+          Create Your Account
+        </h2>
         <label htmlFor="user">Enter your name</label>
         <br />
         <input
@@ -79,16 +83,28 @@ export default function SignUp(): JSX.Element {
           />
           <br />
         </div>
-        <button type="button" className="bg-yellow-400 px-2 py-1 border rounded-md my-4 hover:bg-green-400" onClick={handleSignUp}>
+        <button
+          type="button"
+          className="bg-yellow-400 px-2 py-1 border rounded-md my-4 hover:bg-green-400"
+          onClick={handleSignUp}
+        >
           Sign Up
         </button>
         <p>Already have an account? Please Sign In.</p>
-        <button className="bg-yellow-400 px-2 py-1 border rounded-md my-4 hover:bg-green-400" onClick={() => navigate("/login")}>Sign In</button>
-        </div>
-        <div className=" w-1/2 h-full mt-10 ml-5">
-            <img className=" animate-spin-slow hover:animate-none hover:cursor-pointer" src="pizza.png" width={500}/>
-        </div>
-        
+        <button
+          className="bg-yellow-400 px-2 py-1 border rounded-md my-4 hover:bg-green-400"
+          onClick={() => navigate("/login")}
+        >
+          Sign In
+        </button>
+      </div>
+      <div className=" w-1/2 h-full mt-10 ml-5">
+        <img
+          className=" animate-spin-slow hover:animate-none hover:cursor-pointer"
+          src="pizza.png"
+          width={500}
+        />
+      </div>
     </div>
   );
 }
