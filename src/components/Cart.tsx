@@ -30,7 +30,7 @@ function Cart({
     <>
       <div className="fixed top-12 w-[90%] md:mx-20 mt-10 m:mb-4 p-4  md:w-[80%]   bg-white border-4 border-black rounded-md">
         <span className="text-4xl font-bold text-center text-black">
-          Your Bucket
+          Your Cart
         </span>
         <button
           onClick={() => {
@@ -73,8 +73,8 @@ function Cart({
                 ))
               ) : (
                 <p className="text-black">
-                  You have nothing in your bucket, Please add products to the
-                  bucket
+                  You have nothing in your Cart, Please add products to the
+                  Cart
                 </p>
               )}
             </ul>

@@ -9,6 +9,10 @@ export default {
       animation: {
         'spin-slow': 'spin 10s linear infinite',
       }},
+      backgroundImage: {
+        'cart': "url('/cart.png')",
+        
+      }
   },
   plugins: [],
 }

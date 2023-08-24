@@ -62,30 +62,30 @@ export default function Header({ setShowCart, cartData, user }: HeaderProps) {
 
   return (
     <div>
-      <div className="flex justify-between w-full mt-5">
-        <h1 className="text-orange-600 font-extrabold text-6xl mx-2">
+      <div className="flex justify-between w-full bg-yellow-300 p-2">
+        <h1 className="text-orange-600 font-extrabold text-6xl mx-2 pt-4">
           My Spice!
         </h1>
-        <div className="flex md:mt-0">
-          <h2 className="m-1 md:m-4 md:p-6 text-xl text-orange-600 hover:text-black hover:cursor-pointer font-bold animate-pulse">
+        <div className="md:flex md:mt-0">
+          <h2 className="m-1 md:m-4 md:p-6 text-xl text-green-700 hover:text-black hover:cursor-pointer font-bold animate-pulse">
             Welcome {user ? user : ""}
           </h2>
           <h2
             onClick={handleSignOut}
-            className="m-1 md:m-4 md:p-6 text-xl text-orange-600 hover:text-black hover:cursor-pointer hover:animate-bounce"
+            className="my-4 md:m-4 md:p-6 text-xl text-orange-600 hover:text-black hover:cursor-pointer hover:animate-bounce"
           >
             SignOut
           </h2>
           <div
             onClick={() => setShowCart(true)}
-            className="md:m-4 ml-2 md:p-6 text-xl text-orange-600 mt-1 hover:text-black hover:cursor-pointer  md:hover:animate-bounce "
+            className="md:m-4 ml-1 md:p-6 text-xl text-orange-600 mt-1 hover:text-black hover:cursor-pointer  md:hover:animate-bounce"
           >
             Cart
           </div>
         
           <div
             onClick={() => setShowCart(true)}
-            className="bg-red-500 w-10 md:relative text-center h-8  mr-5 rounded-md p-2 text-white font-bold hover:cursor-pointer"
+            className="bg-red-500 w-10 md:relative text-center h-8  mr-5 rounded-md p-2 md:absoulte md:top-9 right-8 text-white font-bold hover:cursor-pointer"
           >
             {cartItemCount}
           </div>
